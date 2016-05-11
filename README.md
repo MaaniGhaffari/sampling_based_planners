@@ -28,4 +28,4 @@ This is a library for some of the sampling-based motion planning algorithms impl
 
 > *The implementations depend on the MATLAB bult-in Kd-tree objects.*
 
-> *It is possible to make the planners kinodynamic y modifying the* **steer.m** *function.* 
+> *It is possible to make the planners kinodynamic by modifying the* **steer.m** *function.* 
