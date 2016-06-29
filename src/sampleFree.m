@@ -1,4 +1,4 @@
-function showGridMap(map)
+function x_samp = sampleFree(map,varargin)
 
 %{  
     Copyright (C) 2016  Maani Ghaffari Jadidi
@@ -12,14 +12,19 @@ function showGridMap(map)
     GNU General Public License for more details. 
 %}
 
-n_grids = size(map.obstacles,1);
-
-for i = 1:n_grids 
-    rectangle('Position',[map.obstacles(i,1), map.obstacles(i,2), map.gridSize, map.gridSize],'FaceColor',[0 .2 .4]);
+if nargin > 1 && nargin == 2
+    idx = varargin{1};
+    nf = length(idx);
+else
+    if isfield(map,'prob')
+        idx = find(map.prob < map.param.prob_free);
+    else
+        idx = (1:map.size(1))';
+    end
+    nf = length(idx);
 end
-
-axis equal;
-set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
-set(gca,'fontsize',24)
-set(gca,'TickLabelInterpreter','latex')
-axis tight
+if isfield(map,'occMap')
+    x_samp = map.occMap.X(idx(ceil(rand*nf)),:);
+else
+    x_samp = map.mdl.X(idx(ceil(rand*nf)),:);
+end

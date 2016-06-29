@@ -16,7 +16,7 @@ x = wps(1,1);
 y = wps(1,2);
 theta = atan2(y - p1(2), x - p1(1));
 r = sqrt((x - p1(1))^2 + (y - p1(2))^2);
-if r < 4 * delta
+if r < 2 * delta
     valid = 0;
     p2 = [];
     return

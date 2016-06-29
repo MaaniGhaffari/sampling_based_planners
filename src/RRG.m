@@ -1,4 +1,4 @@
-function G = RRT(map, x_init, varargin)
+function G = RRG(map, x_init, varargin)
 
 %{  
     Copyright (C) 2016  Maani Ghaffari Jadidi
@@ -43,25 +43,26 @@ for i = 1:nsteps
     end
     
     if noCollision(x_near, x_new, map)
+        [Idx, Dnear] = rangesearch(G.V, x_new, 6);
+        Idx = Idx{1};
+        Dnear = Dnear{1};
         V = [V; x_new];
         G.V = KDTreeSearcher(V);
-        G.E = [G.E; id_near size(G.V.X,1)];
+        G.E = [G.E; id_near size(G.V.X,1); size(G.V.X,1) id_near];
         plot(x_new(1), x_new(2), '.', 'MarkerSize', 10, 'Color',darkgrey)
         line([x_near(1) x_new(1)], [x_near(2) x_new(2)], 'Color', lightgrey, 'linewidth', 2)
+        
+        if ~isempty(Idx)
+            for j = 1:length(Idx)
+                if Dnear(j) > 1
+                    if noCollision(G.V.X(Idx(j),:), x_new, map)
+                        G.E = [G.E; Idx(j) size(G.V.X,1); size(G.V.X,1) Idx(j)];
+                        line([G.V.X(Idx(j),1) x_new(1)], [G.V.X(Idx(j),2) x_new(2)], 'Color', lightgrey, 'linewidth', 2)
+                    end
+                end
+            end
+        end
     end
-end
-
-[path, leaves] = dfsPreorder(G);
-G.dfs = path;
-G.leaves = leaves;
-for i = 1:length(leaves)
-    plot(G.V.X(leaves(i),1), G.V.X(leaves(i),2), '.r', 'MarkerSize', 16)
-end
-
-P = getMainPaths(G);
-G.path = P;
-for i = 1:length(P)
-    plotPath(G.V.X, P{i})
 end
 
 plot(x_init(1), x_init(2), 's', 'markersize',12, 'Color', green, 'MarkerFaceColor', green)

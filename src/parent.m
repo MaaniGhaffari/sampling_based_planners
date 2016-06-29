@@ -1,4 +1,4 @@
-function showGridMap(map)
+function [p, Enew] = parent(E, idv)
 
 %{  
     Copyright (C) 2016  Maani Ghaffari Jadidi
@@ -12,14 +12,12 @@ function showGridMap(map)
     GNU General Public License for more details. 
 %}
 
-n_grids = size(map.obstacles,1);
-
-for i = 1:n_grids 
-    rectangle('Position',[map.obstacles(i,1), map.obstacles(i,2), map.gridSize, map.gridSize],'FaceColor',[0 .2 .4]);
+if idv == 1
+    p = 1;
+    Enew = E;
+    return;
 end
-
-axis equal;
-set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
-set(gca,'fontsize',24)
-set(gca,'TickLabelInterpreter','latex')
-axis tight
+id = E(:,2) == idv;
+p = E(id,1);
+E(id,:) = [];
+Enew = E;

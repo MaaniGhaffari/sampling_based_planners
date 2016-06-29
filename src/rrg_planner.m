@@ -1,4 +1,4 @@
-function out = rrt_planner()
+function out = rrg_planner()
 
 %{  
     Copyright (C) 2016  Maani Ghaffari Jadidi
@@ -51,7 +51,7 @@ hold on
 x_init = [10,2];
 
 t0 = tic;
-G = RRT(map, x_init);
+G = RRG(map, x_init);
 time = toc(t0);
 
 out = [];

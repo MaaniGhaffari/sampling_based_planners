@@ -1,4 +1,4 @@
-function showGridMap(map)
+function plotEdges(G, varargin)
 
 %{  
     Copyright (C) 2016  Maani Ghaffari Jadidi
@@ -12,14 +12,15 @@ function showGridMap(map)
     GNU General Public License for more details. 
 %}
 
-n_grids = size(map.obstacles,1);
-
-for i = 1:n_grids 
-    rectangle('Position',[map.obstacles(i,1), map.obstacles(i,2), map.gridSize, map.gridSize],'FaceColor',[0 .2 .4]);
+if nargin > 1
+    colour = varargin{1};
+else
+    colour = [.7 .7 .7];
 end
 
-axis equal;
-set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
-set(gca,'fontsize',24)
-set(gca,'TickLabelInterpreter','latex')
-axis tight
+E = G.E;
+for i = 1:size(E,1)
+    x1 = G.V.X(E(i,1),:);
+    x2 = G.V.X(E(i,2),:);
+    line([x1(1) x2(1)], [x1(2) x2(2)], 'Color', colour, 'linewidth', 2)
+end
