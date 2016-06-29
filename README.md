@@ -1,6 +1,6 @@
 # sampling_based_planners
 ---
-This is a library for some of the sampling-based motion planning algorithms implemented in MATLAB. Currently the following methods are available:
+This is a library for some of the sampling-based motion planning algorithms implemented in MATLAB. Currently the following methods are available: rapidly-exploring random tree (RRT), rapidly-exploring random graph (RRG), asymptotically optimal RRT (RRT*).
 
 - RRT
 
