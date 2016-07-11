@@ -8,7 +8,7 @@ This is a library for some of the sampling-based motion planning algorithms impl
 >> init
 ```
 
-- IIG (RIG with an information-based convergence metric): The information functions estimate the mutual information, the available methods are mutual information `'mi'`, mutual information upper bound `'miub'`, Gaussian process variance reduction `'gpvr'`, and Gaussian process variance reduction with uncertain input `'ugpvr'`. For more details please see the IIG paper at: https://arxiv.org/abs/1607.01883
+- IIG (RIG with an information-based convergence metric): The information functions estimate the mutual information, the available methods are mutual information `'mi'`, mutual information upper bound `'miub'`, Gaussian process variance reduction `'gpvr'`, and Gaussian process variance reduction with uncertain input `'ugpvr'`. For more details please see the IIG paper: https://arxiv.org/abs/1607.01883
 
 For example, we can run IIG using `'ugpvr'` information function as follows:
 
