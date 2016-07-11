@@ -1,5 +1,5 @@
 function K = covUI(cov, N, S2, hyp, x, z, i)
-% A wraper for integration over covariance functions with uncertain input.
+% A wrapper for integration over covariance functions with uncertain input.
 %
 % The input data u is considered to be normally distributed N(x,S2).
 % This function uses Gauss-Hermite quadrature to numerically compute the
