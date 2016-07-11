@@ -1,4 +1,4 @@
-function plotPath(X, path)
+function Snew = predictCov(x1, x2, S, Q)
 
 %{  
     Copyright (C) 2016  Maani Ghaffari Jadidi
@@ -12,9 +12,18 @@ function plotPath(X, path)
     GNU General Public License for more details. 
 %}
 
-colour = [161 80 8]/255;
-for i = 1:length(path)-1
-    x1 = X(path(i),:);
-    x2 = X(path(i+1),:);
-    line([x1(1) x2(1)], [x1(2) x2(2)], 'Color', colour, 'linewidth', 3)
-end
+dx = x2 - x1;
+h = atan2(dx(2),dx(1));
+sh = sin(h);
+ch = cos(h);
+
+% Jacobian
+F = [1, 0, -sh*dx(1) - ch*dx(2);
+     0, 1, ch*dx(1) - sh*dx(2);
+     0, 0, 1];
+   
+W = [ch, -sh, 0;
+     sh, ch, 0;
+     0, 0, 1];
+
+Snew = F * S * F' + W * Q * W';

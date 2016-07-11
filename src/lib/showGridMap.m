@@ -20,6 +20,6 @@ end
 
 axis equal;
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
-set(gca,'fontsize',24)
+set(gca,'fontsize',20)
 set(gca,'TickLabelInterpreter','latex')
 axis tight
